@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherScope - Modern Weather App</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 class="app-title">WeatherScope</h1>
+        <p class="app-subtitle">Your comprehensive weather companion</p>
+      </div>
+
+      <div class="search-section">
+        <div class="search-container">
+          <input
+            type="text"
+            class="search-input"
+            id="cityInput"
+            placeholder="Enter city name (e.g., Delhi, Mumbai, London, New York, Tokyo)"
+          />
+          <button class="search-btn" id="searchBtn">
+            <i class="fas fa-search"></i>
+            Get Weather
+          </button>
+        </div>
+      </div>
+
+      <div id="loadingDiv" class="loading" style="display: none">
+        <i class="fas fa-spinner"></i>
+        <p>Fetching weather data...</p>
+      </div>
+
+      <div id="errorDiv" class="error-message" style="display: none"></div>
+
+      <div id="weatherDisplay" class="weather-display">
+        <div class="main-weather-card">
+          <div class="weather-header">
+            <div class="location-info">
+              <h2 id="cityName"></h2>
+              <div class="current-time" id="currentTime"></div>
+            </div>
+            <div class="weather-icon-main">
+              <i id="mainWeatherIcon" class="fas fa-sun"></i>
+            </div>
+          </div>
+
+          <div class="main-temp-section">
+            <div class="temperature-display">
+              <span class="main-temp" id="mainTemp">22</span>
+              <span class="temp-unit">°C</span>
+            </div>
+            <div class="weather-description">
+              <div class="description-text" id="weatherDescription">
+                Clear Sky
+              </div>
+              <div class="feels-like">
+                Feels like <span id="feelsLike">25</span>°C
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weather-details-grid">
+          <div class="detail-card">
+            <div class="detail-header">
+              <i class="fas fa-wind detail-icon"></i>
+              <span class="detail-title">Wind</span>
+            </div>
+            <div class="detail-value" id="windSpeed">15 km/h</div>
+            <div class="detail-subtitle">
+              Direction: <span id="windDirection">NE</span>
+            </div>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-header">
+              <i class="fas fa-tint detail-icon"></i>
+              <span class="detail-title">Humidity</span>
+            </div>
+            <div class="detail-value" id="humidity">65%</div>
+            <div class="detail-subtitle">Comfortable level</div>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-header">
+              <i class="fas fa-eye detail-icon"></i>
+              <span class="detail-title">Visibility</span>
+            </div>
+            <div class="detail-value" id="visibility">10 km</div>
+            <div class="detail-subtitle">Clear visibility</div>
+          </div>
+
+          <div class="detail-card">
+            <div class="detail-header">
+              <i class="fas fa-thermometer-half detail-icon"></i>
+              <span class="detail-title">Pressure</span>
+            </div>
+            <div class="detail-value" id="pressure">1013 hPa</div>
+            <div class="detail-subtitle">Standard pressure</div>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <div class="detail-header">
+            <i class="fas fa-info-circle detail-icon"></i>
+            <span class="detail-title">Additional Information</span>
+          </div>
+          <div class="additional-info">
+            <div class="info-item">
+              <i class="fas fa-sunrise info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Sunrise</div>
+                <div class="info-value" id="sunrise">05:55 AM</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-sunset info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Sunset</div>
+                <div class="info-value" id="sunset">06:51 PM</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-cloud info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Cloudiness</div>
+                <div class="info-value" id="cloudiness">100%</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-sun info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">UV Index</div>
+                <div class="info-value" id="uvIndex">5</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Coordinates</div>
+                <div class="info-value" id="coordinates">28.67°, 77.22°</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-clock info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Timezone</div>
+                <div class="info-value" id="timezone">UTC+5.5</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-thermometer-three-quarters info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Heat Index</div>
+                <div class="info-value" id="heatIndex">32°C</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-tint info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Dew Point</div>
+                <div class="info-value" id="dewPoint">24°C</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-compress-arrows-alt info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Air Quality</div>
+                <div class="info-value" id="airQuality">Moderate</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-moon info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Moon Phase</div>
+                <div class="info-value" id="moonPhase">Waxing Gibbous</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-mountain info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Elevation</div>
+                <div class="info-value" id="elevation">216m</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-temperature-low info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Min Temp Today</div>
+                <div class="info-value" id="minTempToday">26°C</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-temperature-high info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Max Temp Today</div>
+                <div class="info-value" id="maxTempToday">34°C</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-eye info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Visibility Range</div>
+                <div class="info-value" id="visibilityRange">Good (8km)</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-wind info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Wind Gust</div>
+                <div class="info-value" id="windGust">18 km/h</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-umbrella info-icon"></i>
+              <div class="info-content">
+                <div class="info-label">Precipitation</div>
+                <div class="info-value" id="precipitation">0.2mm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-Day Forecast Section -->
+        <div class="forecast-section">
+          <div class="detail-header">
+            <i class="fas fa-calendar-alt detail-icon"></i>
+            <span class="detail-title">5-Day Forecast</span>
+          </div>
+          <div class="forecast-grid" id="forecastGrid">
+            <!-- Forecast items will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
