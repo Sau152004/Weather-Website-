@@ -119,6 +119,10 @@ npx live-server
 
 ## 📱 Screenshots 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/18c04f19-9373-4c0b-9335-6ae07d6b0feb" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/51170b8c-346f-4757-8e9d-9b42c6bd7702" />
+<img width="1918" height="636" alt="image" src="https://github.com/user-attachments/assets/e105002d-df3c-4b4d-8459-3fd76246acb2" />
+
+
 
 
 👉 You can add screenshots like:
